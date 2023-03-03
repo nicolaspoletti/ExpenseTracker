@@ -1,25 +1,21 @@
 ﻿@model Category
 
 @{
-    ViewData["Title"] = "Create";
+    ViewBag.Title = "title";
+    Layout = "_Layout";
 }
 
-<h2>Create</h2>
-<h4>Category</h4>
-
-<hr/>
+<h2>Create View</h2>
 
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
-            
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            
             <div class="form-group">
                 <div class='e-btn-group custom-rbt-group'>
-                    <input type="radio" id="radioleft" name="Type" value="Expense" checked="@(Model.Type=="Expense")" />
+                    <input type="radio" id="radioleft" name="Type" value="Expense" checked="@(Model.Type == "Expense")"/>
                     <label class="e-btn" for="radioleft">Expense</label>
-                    <input type="radio" id="radiomiddle" name="Type" value="Income" />
+                    <input type="radio" id="radiomiddle" name="Type" value="Income"/>
                     <label class="e-btn" for="radiomiddle">Income</label>
                 </div>
             </div>
@@ -37,5 +33,3 @@
         </form>
     </div>
 </div>
-
-
