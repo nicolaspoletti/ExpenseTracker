@@ -71,20 +71,21 @@ public class CategoryController : Controller
 
         return View(category);
     }
-
-    public IActionResult SaveCategory()
+    
+    [HttpPost, ActionName("Delete")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Delete(int id)
     {
-        
+        if (_context.Categories == null)
+            return Problem("Entity set Categories is empty");
+
+
+        var category = await _context.Categories.FindAsync(id);
+
+        if (category != null)
+            _context.Categories.Remove(category);
+
+        await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));
-    }
-
-    public IActionResult Details()
-    {
-        throw new NotImplementedException();
-    }
-
-    public IActionResult Delete()
-    {
-        throw new NotImplementedException();
     }
 }
